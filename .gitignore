@@ -1,0 +1,31 @@
+# C / C++ compiled files
+*.o
+*.obj
+*.lo
+*.la
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+*.out
+*.pdb
+*.ilk
+
+# Build directories and common build artefacts
+build/
+bin/
+Debug/
+Release/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# IDE / platform-specific
+.vs/
+.vscode/
+*.suo
+*.user
+*.vcxproj.user
