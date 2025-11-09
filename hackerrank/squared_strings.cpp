@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 class SquareStrings {
 
@@ -8,9 +9,30 @@ private:
    unsigned mSmallestInteger;
    unsigned l_sizeString;
    string mLine;
+   string mTransformedLine; //string has already \n inserted
 
-   void transformingStringtoSubstringN(){
-      
+
+   void mirrorMainDiagonal() {
+      std::size_t stride = mSmallestInteger + 1; // +1 because of '\n'
+      for (std::size_t i = 0; i < mSmallestInteger; ++i) {
+         for (std::size_t j = i + 1; j < mSmallestInteger; ++j) {
+               std::swap(mTransformedLine[i * stride + j], mTransformedLine[j * stride + i]);
+         }
+      }
+   }
+
+   void transformingStringtoSquareStringgN()
+   {
+      mTransformedLine.clear();
+      mTransformedLine.reserve(mLine.size() + mLine.size() / mSmallestInteger); // reserve to minimize reallocations
+
+      for (std::size_t i = 0; i < mLine.size(); ++i) {
+         mTransformedLine += mLine[i];
+         if ((i + 1) % mSmallestInteger == 0 && i + 1 != mLine.size()) {
+            mTransformedLine += '\n';
+         }
+      }
+      return;
    }
 
    void padWithAscii11() {
@@ -21,7 +43,7 @@ private:
 
    void smallestInteger(){
       mSmallestInteger = 1;
-      while (mSmallestInteger >= l_sizeString) {
+      while (mSmallestInteger < l_sizeString) {
          if ((mSmallestInteger * mSmallestInteger) >= l_sizeString) {
             break;
          }
@@ -37,6 +59,11 @@ public:
       l_sizeString = static_cast<unsigned>(line.size());
       smallestInteger();
       padWithAscii11();
+      transformingStringtoSquareStringgN();
+      mirrorMainDiagonal();
+      string input2 = "abcdefghijklmnop";
+      std::cout << input2 << std::endl;
+      std::cout << mTransformedLine << std::endl;
    }
 
    unsigned getSizeString() const {
@@ -54,6 +81,5 @@ int main()
    SquareStrings ss;
    string input = "abcdefghijklmnop";
    ss.readLine(input);
-   std::cout << "You entered: " << input << std::endl;
    return 0;
 }
