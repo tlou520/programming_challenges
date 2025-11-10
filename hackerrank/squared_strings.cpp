@@ -12,6 +12,14 @@ private:
    string mTransformedLine; //string has already \n inserted
 
 
+   void reverseEachSubstring() {
+    std::size_t stride = mSmallestInteger + 1; // includes '\n'
+    for (std::size_t i = 0; i < mTransformedLine.size(); i += stride) {
+        std::reverse(mTransformedLine.begin() + i, mTransformedLine.begin() + i + mSmallestInteger);
+    }
+   }
+
+
    void mirrorMainDiagonal() {
       std::size_t stride = mSmallestInteger + 1; // +1 because of '\n'
       for (std::size_t i = 0; i < mSmallestInteger; ++i) {
@@ -36,8 +44,8 @@ private:
    }
 
    void padWithAscii11() {
-      if (mLine.size() < mSmallestInteger) {
-         mLine.append(mSmallestInteger - mLine.size(), static_cast<char>(11));
+      if (mLine.size() < mSmallestInteger * mSmallestInteger) {
+         mLine.append(mSmallestInteger * mSmallestInteger - mLine.size(), static_cast<char>(11));
       }
    }
 
@@ -61,6 +69,7 @@ public:
       padWithAscii11();
       transformingStringtoSquareStringgN();
       mirrorMainDiagonal();
+      reverseEachSubstring();
       string input2 = "abcdefghijklmnop";
       std::cout << input2 << std::endl;
       std::cout << mTransformedLine << std::endl;
@@ -79,7 +88,7 @@ public:
 int main() 
 {
    SquareStrings ss;
-   string input = "abcdefghijklmnop";
+   string input = "I.was.going.fishing.that.morning.at.ten.o'clock";
    ss.readLine(input);
    return 0;
 }
