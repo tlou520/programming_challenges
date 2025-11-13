@@ -83,32 +83,6 @@ private:
       return;
    }
 
-   void reverseLineOrder() {
-      mLine = mTransformedLine;
-      return;
-      std::istringstream stream(mTransformedLine);
-      std::vector<std::string> lines;
-      std::string line;
-
-      // Split by newline
-      while (getline(stream, line))
-         lines.push_back(line);
-
-      // Reverse order
-      reverse(lines.begin(), lines.end());
-
-      // Join back together
-      std::ostringstream result;
-      for (std::size_t i = 0; i < lines.size(); ++i) {
-         result << lines[i];
-         if (i + 1 < lines.size())
-               result << '\n';
-      }
-
-      mLine = result.str();
-      cout << mLine << endl;
-   }
-
 public:
 
    CodeSqStrings(string mTransformedLine) : mTransformedLine(mTransformedLine) {
@@ -149,7 +123,6 @@ public:
       ss.takingmSmallestInteger();
       ss.reverseEachSubstring();
       ss.mirrorMainDiagonal();
-      ss.reverseLineOrder();
       ss.cleaningString();
       std::cout << ss.mLine << std::endl;
 
