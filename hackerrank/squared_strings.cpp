@@ -123,6 +123,7 @@ public:
       ss.takingmSmallestInteger();
       ss.reverseEachSubstring();
       ss.mirrorMainDiagonal();
+      ss.mLine = ss.mTransformedLine;
       ss.cleaningString();
       std::cout << ss.mLine << std::endl;
 
